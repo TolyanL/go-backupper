@@ -1,0 +1,24 @@
+backupper:
+  store_dir: ./store/ # path to store backups
+  logger:
+    enabled: true
+    dir: ./logs # dir to store logs 
+    format: json # json | text - format of logs
+    level: info # debug | info | warn | error - level of logs
+  tasks:
+    - name: task1 # task name
+      user: root # server user
+      address: 127.0.0.1 # server address
+      job:
+        container_name: gachas_db # job container name
+        use_command: # command to execute on server before backup
+        work_dir: /root/path/to/work/dir # dir to store job files on server
+        media_path: # dir to store media files on server
+      postgresql:
+        host: 127.0.0.1 # db address
+        port: 5432 # db port
+        user: postgres # db user
+        password: postgres # db password
+        database: postgres # db name
+    - name: task2 # task name
+      ...
